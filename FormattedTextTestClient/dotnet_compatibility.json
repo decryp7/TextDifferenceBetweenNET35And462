@@ -1,0 +1,10 @@
+﻿{
+  "TargetFramework": {
+    "Current": "4.0.0",
+    "Planned": "4.6.2"
+  },
+  "RuntimeFramework": {
+    "Current": "4.0.0",
+    "Planned": "4.6.2"
+  }
+}

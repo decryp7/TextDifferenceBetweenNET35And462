@@ -1,0 +1,162 @@
+﻿<Window x:Class="FormattedTextTestClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:FormattedTextTestClient.ViewModels"
+        xmlns:numeric="http://gu.se/NumericInput"
+        mc:Ignorable="d"
+        Title="FormattedText Viewer" Height="350" Width="525" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="numeric:SpinnerDecorator">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Rectangle">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- Legend -->
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock FontFamily="Arial" FontWeight="Bold" FontStyle="Italic" Grid.ColumnSpan="2" Grid.RowSpan="5" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.04">Legend</TextBlock>
+
+            <!-- FormattedText Boundary -->
+            <Rectangle Grid.Column="0" Grid.Row="0" Width="20" Height="10" Stroke="DarkBlue" />
+            <Label Grid.Column="1" Grid.Row="0"  Content="FormattedText Boundary"/>
+
+            <!--FormattedText without Overhang Boundary (OverhangLeading and OverhangTrailing) -->
+            <Rectangle Grid.Column="0" Grid.Row="1" Width="20" Height="10" Stroke="Red" />
+            <Label Grid.Column="1" Grid.Row="1"  Content="FormattedText without Overhang Boundary (OverhangLeading and OverhangTrailing)"/>
+
+            <!--Boundary generated using Geometry of FormattedText (FormattedText.BuildGeometry()) -->
+            <!--<Rectangle Grid.Column="0" Grid.Row="2" Width="20" Height="10" Stroke="DarkGreen" />
+            <Label Grid.Column="1" Grid.Row="2"  Content="Boundary generated using Geometry of FormattedText (FormattedText.BuildGeometry())"/>-->
+
+            <!-- FormattedText.OverhangLeading -->
+            <Rectangle Grid.Column="0" Grid.Row="3" Width="20" Height="10" Fill="Gold" />
+            <Label Grid.Column="1" Grid.Row="3"  Content="FormattedText.OverhangLeading"/>
+
+            <!-- FormattedText.OverhangTrailing -->
+            <Rectangle Grid.Column="0" Grid.Row="4" Width="20" Height="10" Fill="Orange" />
+            <Label Grid.Column="1" Grid.Row="4"  Content="FormattedText.OverhangTrailing"/>
+        </Grid>
+
+        <!-- Font Properties -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Text -->
+            <Label Content="Text" Grid.Column="0" Grid.Row="0"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch"/>
+
+            <!-- Font -->
+            <Label Content="Font" Grid.Column="0" Grid.Row="1"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Fonts}" SelectedItem="{Binding SelectedFont}"/>
+            
+            <!-- Style -->
+            <Label Content ="Style" Grid.Column="0" Grid.Row="2" />
+            <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding FontStyles}" SelectedItem="{Binding SelectedFontStyle}"/>
+
+            <!-- Size -->
+            <Label Content ="Size" Grid.Column="0" Grid.Row="3" />
+            <numeric:SpinnerDecorator Grid.Column="1" Grid.Row="3">
+                <numeric:DoubleBox AllowSpinners="True"
+                                   Increment="1"
+                                   Value="{Binding FontSize, UpdateSourceTrigger=PropertyChanged}" />
+            </numeric:SpinnerDecorator>
+        </Grid>
+
+        <!-- FormattedText Metrics -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Label Content=".NET 3.5" Grid.Column="1" Grid.Row="0"/>
+            <Label Content=".NET 4.6.2" Grid.Column="2" Grid.Row="0"/>
+            <Label Content="Difference" Grid.Column="3" Grid.Row="0"/>
+            
+            <!-- Width -->
+            <Label Content="Width" Grid.Column="0" Grid.Row="1"/>
+            <Label Content="{Binding FormattedTextMetrics35.Width}" Grid.Column="1" Grid.Row="1"/>
+            <Label Content="{Binding FormattedTextMetrics462.Width}" Grid.Column="2" Grid.Row="1"/>
+            <Label Content="{Binding FormattedTextMetricsDifference.Width}" Grid.Column="3" Grid.Row="1"/>
+
+            <!-- OverhangLeading -->
+            <Label Content="OverhangLeading" Grid.Column="0" Grid.Row="2"/>
+            <Label Content="{Binding FormattedTextMetrics35.OverhangLeading}" Grid.Column="1" Grid.Row="2"/>
+            <Label Content="{Binding FormattedTextMetrics462.OverhangLeading}" Grid.Column="2" Grid.Row="2"/>
+            <Label Content="{Binding FormattedTextMetricsDifference.OverhangLeading}" Grid.Column="3" Grid.Row="2"/>
+
+            <!-- OverhangTrailing -->
+            <Label Content="OverhangTrailing" Grid.Column="0" Grid.Row="3"/>
+            <Label Content="{Binding FormattedTextMetrics35.OverhangTrailing}" Grid.Column="1" Grid.Row="3"/>
+            <Label Content="{Binding FormattedTextMetrics462.OverhangTrailing}" Grid.Column="2" Grid.Row="3"/>
+            <Label Content="{Binding FormattedTextMetricsDifference.OverhangTrailing}" Grid.Column="3" Grid.Row="3"/>
+        </Grid>
+
+        <StackPanel Grid.Row="3">
+            <!--<Button Content="Calculate FormattedText Metrics" Command="{Binding CalculateCommand}"/>-->
+            <CheckBox Content="IncludeAllInkInBoundingBox (Uncheck to go back to .NET 3.5 behaviour)" IsChecked="{Binding IncludeAllInkInBoundingBox, UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox Content="Use .NET 3.5 fallback composite font" IsChecked="{Binding UseNET35FallbackFont, UpdateSourceTrigger=PropertyChanged}"/> 
+            <Button Content="Generate CSV for all fonts with selected style and size" Command="{Binding GenerateCSVCommand}" />
+        </StackPanel>
+    </Grid>
+</Window>
+
