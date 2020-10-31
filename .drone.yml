@@ -8,5 +8,5 @@ platform:
 steps:
 - name: compile
   commands:
-    - Invoke-MsBuild -Path FormattedTextTestClient\FormattedTextTestClient.csproj -MsBuildParameters "-t:restore" -ShowBuildOutputInCurrentWindow -PassThru
+    - nuget restore FormattedTextTestClient\packages.config
 
