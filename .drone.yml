@@ -6,8 +6,10 @@ platform:
   os: windows
 
 steps:
-- name: compile
+- name: restore nuget packages
   commands:
     - c:\nuget\nuget.exe restore FormattedTextTest.sln
+- name: compile
+  commands:
     - Invoke-MsBuild -Path FormattedTextTest.sln -ShowBuildOutputInCurrentWindow -PassThru
 
