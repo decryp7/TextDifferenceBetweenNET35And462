@@ -14,7 +14,7 @@ steps:
     - Invoke-MsBuild -Path FormattedTextTest.sln -ShowBuildOutputInCurrentWindow -PassThru
 - name: create compressed package
   commands:
-    - Compress-Archive -Path FormattedTextTestClient\bin\*.* -DestinationPath FormattedTextTest.zip -CompressionLevel Optimal
+    - Compress-Archive -Path FormattedTextTestClient\bin\*.* -DestinationPath c:\windows\temp\FormattedTextTest.zip -CompressionLevel Optimal
 - name: upload artifacts
   environment:
     repo_username:
