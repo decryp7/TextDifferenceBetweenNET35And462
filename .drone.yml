@@ -9,4 +9,5 @@ steps:
 - name: compile
   commands:
     - c:\nuget\nuget.exe restore FormattedTextTest.sln
+    - Invoke-MsBuild -Path FormattedTextTest.sln -ShowBuildOutputInCurrentWindow -PassThru
 
