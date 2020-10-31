@@ -19,7 +19,5 @@ steps:
     password:
       from_secret: password
   commands:
-    - $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username,$password)))
-    - $base64AuthInfo
-    - Invoke-RestMethod -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} --upload-file bin\Debug\FormattedTextTestClient.exe https://repository.decryptology.net/repository/Artifacts/FormattedTextTestClient.exe
+    - curl -v -u $username:$password --upload-file bin\Debug\FormattedTextTestClient.exe https://repository.decryptology.net/repository/Artifacts/FormattedTextTestClient.exe
 
