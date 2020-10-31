@@ -14,10 +14,10 @@ steps:
     - Invoke-MsBuild -Path FormattedTextTest.sln -ShowBuildOutputInCurrentWindow -PassThru
 - name: upload artifacts
   environment:
-    username:
-      from_secret: username
-    password:
-      from_secret: password
+    repo_username:
+      from_secret: repo_username
+    repo_password:
+      from_secret: repo_password
   commands:
-    - echo $env:username
+    - echo $env:repo_username
 
