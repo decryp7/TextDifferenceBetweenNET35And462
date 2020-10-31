@@ -19,5 +19,5 @@ steps:
     password:
       from_secret: password
   commands:
-    - curl -v -u $env:username:$env:password --upload-file bin\Debug\FormattedTextTestClient.exe https://repository.decryptology.net/repository/Artifacts/FormattedTextTestClient.exe
+    - echo $env:username:$env:password
 
