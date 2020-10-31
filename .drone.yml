@@ -19,5 +19,6 @@ steps:
     repo_password:
       from_secret: repo_password
   commands:
-    - echo $env:repo_username
+    - $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $env:repo_username,$env:repo_password)))
+    - echo $base64AuthInfo
 
