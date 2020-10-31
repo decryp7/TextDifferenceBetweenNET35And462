@@ -1,0 +1,1 @@
+[![Build Status](https://ci.decryptology.net/api/badges/decryp7/TextDifferenceBetweenNET35And462/status.svg)](https://ci.decryptology.net/decryp7/TextDifferenceBetweenNET35And462)

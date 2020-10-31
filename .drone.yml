@@ -1,0 +1,11 @@
+kind: pipeline
+type: exec
+name: default
+
+platform:
+  os: windows
+
+steps:
+- name: compile
+  commands:
+  - Invoke-MsBuild -Path FormattedTextTest.sln -ShowBuildOutputInCurrentWindow
