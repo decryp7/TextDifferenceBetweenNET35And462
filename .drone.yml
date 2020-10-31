@@ -19,5 +19,5 @@ steps:
     password:
       from_secret: password
   commands:
-    - echo $env:username:$env:password
+    - echo $env:username
 
