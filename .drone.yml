@@ -8,5 +8,5 @@ platform:
 steps:
 - name: compile
   commands:
-  - dotnet restore FormattedTextTest.sln
+    - Invoke-MsBuild -Path FormattedTextTest.sln -t:restore -ShowBuildOutputInCurrentWindow -PassThru
 
