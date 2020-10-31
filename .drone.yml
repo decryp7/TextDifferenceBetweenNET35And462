@@ -8,5 +8,5 @@ platform:
 steps:
 - name: compile
   commands:
-    - nuget restore FormattedTextTestClient\packages.config
+    - c:\nuget\nuget.exe restore FormattedTextTestClient\packages.config
 
