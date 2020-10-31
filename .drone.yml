@@ -20,5 +20,5 @@ steps:
       from_secret: repo_password
   commands:
     - $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $env:repo_username,$env:repo_password)))
-    - echo $base64AuthInfo
+    - Invoke-RestMethod -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} -uri https://repository.decryptology.net/repository/artifacts/FormattedTextTestClient.exe -Method Put -Infile bin\Debug\FormattedTextTestClient.exe
 
