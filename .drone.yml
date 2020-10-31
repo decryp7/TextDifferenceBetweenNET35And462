@@ -12,4 +12,7 @@ steps:
 - name: compile
   commands:
     - Invoke-MsBuild -Path FormattedTextTest.sln -ShowBuildOutputInCurrentWindow -PassThru
+- name: upload artifacts
+    - $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username,$password)))
+    - $base64AuthInfo
 
