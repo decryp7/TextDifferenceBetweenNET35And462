@@ -9,7 +9,7 @@ steps:
 - name: restore nuget packages
   commands:
     - c:\nuget\nuget.exe restore FormattedTextTest.sln
-- name: compile
+- name: build
   commands:
     - Invoke-MsBuild -Path FormattedTextTest.sln -ShowBuildOutputInCurrentWindow -PassThru
 - name: create compressed package
