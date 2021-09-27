@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:FormattedTextTestCommon.Views;assembly=FormattedTextTestCommon"
         mc:Ignorable="d"
-        Title="FormattedText in .NET 4.6.2" Height="350" Width="525" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+        Title="4.6.2" Height="350" Width="525" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Grid>
         <views:VisualHost x:Name="VisualHost" Margin="20" />
     </Grid>
