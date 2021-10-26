@@ -15,6 +15,9 @@ namespace FormattedTextTest3._5
     public partial class MainWindow : Window
     {
         private readonly ServiceHost serviceHost;
+        private readonly string runtimeVersion = System.Runtime.InteropServices.RuntimeEnvironment.GetSystemVersion();
+        private readonly string runtimeDirectory =
+            System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeDirectory();
 
         public MainWindow()
         {
@@ -25,6 +28,9 @@ namespace FormattedTextTest3._5
             EventWaitHandle wh = EventWaitHandle.OpenExisting(Constants.FormattedTextService35Name);
             wh.Set();
             wh.Close();
+            this.Title = String.Format(CultureInfo.InvariantCulture, "{0} from {1}",
+                runtimeVersion,
+                runtimeDirectory);
         }
 
         private ServiceHost StartService()
